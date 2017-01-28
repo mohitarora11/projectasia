@@ -5,8 +5,8 @@ if(!isset($_SESSION)){ //Doesn't let Browser create Cache
 	}
 	session_start();
 }
-$url="http://localhost/samar/";
-$serverurl="http://localhost/samar/server/";
+$url="http://localhost/projectasia/";
+$serverurl="http://localhost/samar/projectasia/";
 //$url="http://digiqom.com/kfc/";
 $bpc=3;
 
