@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
                     <div class="card-content">
                         <span class="card-title black-text"><?php echo $_message; ?></span><br/>
                         <?php if (!empty($_REQUEST["type"])){
-                            echo '<img id="id_aboutme_img" style="width:100%" src="../images/'.$_REQUEST["type"].'"jpg?bpc=1" />';
+                            echo '<img id="id_aboutme_img" style="width:100%" src="../images/'.$_REQUEST["type"].'.jpg?bpc=1" />';
                         }?>
                     </div>
                 </div>
