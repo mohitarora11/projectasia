@@ -35,7 +35,8 @@ $columns = array(
 	array( 'db' => 'mobile',   'dt' => 3 ),
 	array( 'db' => 'type',     'dt' => 4 ),
 	array('db'  => 'date_time','dt' => 5),
-	array('db'  => 'rstring','dt' => 6)
+	array('db'  => 'rstring','dt' => 6),
+	array('db'  => 'answerstatus','dt' => 7)
 );
 
 // SQL server connection information

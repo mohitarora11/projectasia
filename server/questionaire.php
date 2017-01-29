@@ -8,9 +8,7 @@
 			global $conn;
 			$sql = "Update questionaire
 					set question1 ='".$this->q1."',question2='".$this->q2."',question3='".$this->q3."',question4='".$this->q4."' where rstring='".$this->rstring."'";
-			
 			$res = $conn->prepare($sql);
-
 			return $res->execute();
 		}
 

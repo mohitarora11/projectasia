@@ -1,5 +1,5 @@
-#id_row_form {
-    opacity: 0;
+#id_row_form,#videowrapper {
+    opacity: 1;
     transition: all .5s ease-out;
 }
 .modal { 

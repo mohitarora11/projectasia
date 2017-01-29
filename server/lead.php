@@ -2,6 +2,8 @@
 include_once("global_var.php");
 include_once("queries.php");
 include_once("questionaire.php");
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest") {
 	if( isset( $_REQUEST["id"] ) ) {
 		$user = new newuser();

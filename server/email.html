@@ -2,15 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Email form test</title>
+    <title>global business art email</title>
+    <style type="text/css">
+        input{
+            margin-left : 6px;
+        }
+        button{
+            background: #d14836;
+            padding: 6px 12px;
+            color: #fff;
+            border: none;
+            text-transform: uppercase;
+        }
+        body{
+            margin-left:2px;
+        }
+    </style>
 </head>
 <body>
     Hi {NAME},<br/><br/>
     Congratulations, you have taken the first step towards an opportunity that could change your life. We have done business for more than 39 years helping people in more than 150 countries towards their economical dreams. We are excited to know more about you to help achieve your goals. Kindly spare a few seconds to fill the below questionnaire and click on the submit button at the end.<br/><br/>
-    <form id="form1" action="http://localhost/samar/server/thankyou.php" method="get">
+    <form  id="form1" action="{SERVERURL}thankyou.php" method="get">
         <div style="margin-bottom:10px">
             <label for="text">Are you looking for? : </label><br>
-            <input type="radio" id="radio1" name="q1" value="a" checked>
+            <input type="radio" id="radio1" name="q1" value="a">
             <label for="radio1">A part time income ranging around 1000-2000 Dirhams</label><br>
             <input type="radio" id="radio2" name="q1" value="b">
             <label for="radio2">A full time income of ___ Dirhams</label><br>
@@ -20,7 +35,7 @@
 
         <div style="margin-bottom:10px">
             <label for="text">How much time are you willing to invest?</label><br>
-            <input type="radio" id="radio1" name="q2" value="a" checked>
+            <input type="radio" id="radio1" name="q2" value="a">
             <label for="radio1">10 hours per week</label><br>
             <input type="radio" id="radio2" name="q2" value="b">
             <label for="radio2">20+ hours per week</label><br>
@@ -30,7 +45,7 @@
 
         <div style="margin-bottom:10px">
             <label for="text">Do you have the possibility to work from home and have a computer?</label><br>
-            <input type="radio" id="radio1" name="q3" value="a" checked>
+            <input type="radio" id="radio1" name="q3" value="a">
             <label for="radio1">Yes</label><br>
             <input type="radio" id="radio2" name="q3" value="b">
             <label for="radio2">No</label><br>
@@ -38,12 +53,13 @@
 
         <div style="margin-bottom:10px">
             <label for="text">Are you active on social media?</label><br>
-            <input type="radio" id="radio1" name="q4" value="a" checked>
+            <input type="radio" id="radio1" name="q4" value="a">
             <label for="radio1">Yes</label><br>
             <input type="radio" id="radio2" name="q4" value="b">
             <label for="radio2">No</label><br>
         </div>
         <input id="id_unique" name="rstring" value="{RSTRING}" type="hidden" />
+        <input id="id_unique" name="rstring" value="{TYPE}" type="hidden" />
         <div>
             <button type="submit" name="Submit">Submit</button>
         </div>

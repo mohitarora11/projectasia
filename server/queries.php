@@ -1,10 +1,11 @@
 <?php
 
 include_once("db_connection.php");
+include_once("global_var.php");
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 class newuser{
-var $id,$email,$name,$lname,$mobile,$type,$rstring;
+var $id,$email,$name,$lname,$mobile,$type,$rstring,$answerstatus;
 
 	/* for checking if student exists or not */
 	
@@ -70,6 +71,14 @@ var $id,$email,$name,$lname,$mobile,$type,$rstring;
 
     	mail($to, $subject, $message, $headers);*/
     	$email = $this->getEmail();
+    	$to      = $this->email;
+		$subject = "Global Business Art";
+		$message   = $email;
+		$Header = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$Header .= 'From: Administrator info@globalbusinessart.com' . "\r\n";
+		ini_set('SMTP', "relay-hosting.secureserver.net");
+		ini_set('smtp_port', "25");
+		try{mail($to, $subject, $message, $Header);}catch (Exception $e) {}
     	//echo $email;
 	}
 
@@ -80,7 +89,7 @@ var $id,$email,$name,$lname,$mobile,$type,$rstring;
 
 	function getEmail() {
 		$str = $this->readEmail();
-		$variables = array("name"=>$this->name,"rstring"=>$this->rstring);
+		$variables = array("name"=>$this->name,"rstring"=>$this->rstring,"serverurl"=>$GLOBALS['url'],"type"=>$this->type);
 
 		foreach($variables as $key => $value){
 		    $str = str_replace('{'.strtoupper($key).'}', $value, $str);
@@ -96,6 +105,14 @@ var $id,$email,$name,$lname,$mobile,$type,$rstring;
 	        $randomString .= $characters[rand(0, $charactersLength - 1)];
 	    }
 	    return $randomString;
+	}
+
+	function updateAnswerStatus() {
+		global $conn;
+		$sql = "Update userinfo
+					set answerstatus =1 where rstring='".$this->rstring."'";
+		$res = $conn->prepare($sql);
+		return $res->execute();
 	}
 }
 ?>

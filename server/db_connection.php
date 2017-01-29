@@ -6,6 +6,11 @@ $sql_details = array(
 	'db'   => 'samar',
 	'host' => '127.0.0.1'
 );
+/*
+'user' => 'gourishankarsql',
+	'pass' => 'ProjectAsia@123',
+	'db'   => 'globalbusinessart',
+	'host' => '127.0.0.1'*/
 
 /*
 $sql_details = array(

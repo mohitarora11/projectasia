@@ -3,22 +3,23 @@ $_videoid = 'ZbvDVuPr9yc';
 $_type = 'arshad';
 if($_SERVER["REQUEST_METHOD"] == "GET")
  { 
-    
-    switch($_REQUEST["type"]){
-        case 'arshad':
-            $_videoid = 'ZbvDVuPr9yc';
-            $_type = 'arshad';
-            break;
-        
-        case 'torun':
-            $_videoid = 'OFe4HswpSJg';  
-            $_type = 'torun'; 
-            break;     
+    if (!empty($_REQUEST["type"])){
+        switch($_REQUEST["type"]){
+            case 'arshad':
+                $_videoid = 'ZbvDVuPr9yc';
+                $_type = 'arshad';
+                break;
+            
+            case 'torun':
+                $_videoid = 'OFe4HswpSJg';  
+                $_type = 'torun'; 
+                break;     
 
-        case 'ob':
-            $_videoid = 'AuHqTSPmAb8';
-            $_type = 'ob';
-            break;    
+            case 'ob':
+                $_videoid = 'AuHqTSPmAb8';
+                $_type = 'ob';
+                break;    
+        }
     }
 }
 ?>    
@@ -26,25 +27,26 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
 <html>
 
 <head>
-    <title>Project Asia</title>
+    <title>Global Business Art</title>
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" media="screen,projection" />
     <!--<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />-->
-    <link type="text/css" rel="stylesheet" href="css/main.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/main.css?bpc=1" media="screen,projection" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 </head>
 
-<body class="grey lighten-3">
+<body class="green lighten-4">
 
     <!--Import jQuery before materialize.js-->
     <div class="container">
-        <div class="row">
+        <div class="row" id="videowrapper">
             <div class="col s12">
                 <div class="card">
-                    <div id="videowrapper" class="videowrapper">
+                    <div  class="videowrapper">
                         <div id="player"></div>
                     </div>
                     <script src="http://www.youtube.com/player_api"></script>
@@ -121,7 +123,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title black-text">Thank you<span id="id_msg"></span></span>
+                        <span class="card-title black-text">Thank you<span id="id_msg"></span></span><br/>
+                        <img id="id_aboutme_img" style="width:100%" src="" data-src="images/<?php echo $_type?>.jpg?bpc=1" />
                     </div>
                 </div>
             </div>
@@ -254,11 +257,14 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
     <script type="text/javascript">
         $('#id_form').submit(function(e) {
             e.preventDefault();
+            $('#id_aboutme_img').attr('src',$('#id_aboutme_img').data('src'));
             $.ajax({
               url: "server/lead.php?id=save",
               data: $('#id_form').serialize()
             }).done(function(r) {
-                if(r.res) {} else {
+                if(r.res) {
+
+                } else {
                     if(typeof r["error"] != undefined) {
                         r["error"]["errorInfo"].forEach(function(item,index){
                             if(String(item).indexOf('Duplicate entry') > -1){

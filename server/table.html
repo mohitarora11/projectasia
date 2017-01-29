@@ -95,8 +95,14 @@
 						} 
 					},
 					{ data: null, render: function ( data, type, row ) {                
-						return '<span class="cls_useranswer"><a href="javascript:void(0)" data-id="'+data[6]+'" class="cls_questionaire">Click to know</a> </span></span>'; /* Date */
-						} 
+						
+							return (data[7] == '1' ? '<span class="cls_useranswer"><a href="javascript:void(0)" data-id="'+data[6]+'" class="cls_questionaire">Click to know</a> </span></span>' : ''); /* answer status */
+
+							
+						
+							return '';
+						}
+
 					},
 					
 					{
@@ -155,7 +161,7 @@
 		var result= {'question1':{'a':'A part time income ranging around 1000-2000 Dirhams','b':'A full time income of ___ Dirhams','c':'Career and financial freedom'},'question2':{'a':'10 hours per week','b':'20+ hours per week','c':'Fulltime'},'question3':{'a':'Yes','b':'No'},'question4':{'a':'Yes','b':'No'}};
 
 		function getAnswer(id,value) {
-			if(value == null) {
+			if(value == null || value == '') {
 				return 'Not Answered';
 			}
 			return result[id][value];

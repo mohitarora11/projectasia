@@ -1,7 +1,7 @@
 <?php
 include_once("global_var.php");
 include_once("questionaire.php");
-
+include_once("queries.php");
 $_error='';
 $_message= '';
 $_rtn=false;
@@ -13,13 +13,28 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
     
 
     $question = new questionaire();
-
+    //$question->q1 = $question->q2 = $question->q3 = $question->q4 = '';
+    if (empty($_REQUEST["q1"])) {
+        $_REQUEST["q1"] = '';
+    }
+    if (empty($_REQUEST["q2"])) {
+        $_REQUEST["q2"] = '';
+    }
+    if (empty($_REQUEST["q3"])) {
+        $_REQUEST["q3"] = '';
+    }
+    if (empty($_REQUEST["q4"])) {
+        $_REQUEST["q4"] = '';
+    }
     $question->q1 = $_REQUEST["q1"];
     $question->q2 = $_REQUEST["q2"];
     $question->q3 = $_REQUEST["q3"];
     $question->q4 = $_REQUEST["q4"];
     $question->rstring = $_REQUEST["rstring"];
     $_rtn=($question->updateQuestionaire());
+    $user = new newuser();
+    $user->rstring = $question->rstring;
+    $user->updateAnswerStatus();
 
     if($_rtn) {
         $_message = 'Thank You for your response. We will get back to you shortly';
@@ -48,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
     </style>
 </head>
 
-<body class="grey lighten-3">
+<body class="green lighten-4">
     <!--Import jQuery before materialize.js-->
     <div class="container">
         
@@ -56,7 +71,10 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
             <div class="col s12" >
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title black-text"><?php echo $_message; ?></span>
+                        <span class="card-title black-text"><?php echo $_message; ?></span><br/>
+                        <?php if (!empty($_REQUEST["type"])){
+                            echo '<img id="id_aboutme_img" style="width:100%" src="../images/'.$_REQUEST["type"].'"jpg?bpc=1" />';
+                        }?>
                     </div>
                 </div>
             </div>
