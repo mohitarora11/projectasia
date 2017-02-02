@@ -17,6 +17,7 @@
 		max-height: 65% !important;
 		width: 90% !important;
 	}
+
 } 
 
 .modal ul li {
@@ -43,11 +44,84 @@
     padding-bottom: 56.25%;
     padding-top: 25px;
     height: 0;
+
 }
+
 .videowrapper iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+#opaque{
+    background: #666;
+    display: none;
+    height: 100%;
+    left: 0;
+    opacity: .5;
+    filter: alpha(opacity=30);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
+    display: inline;
+    margin-right: 5px;
+    font-size: 19px;
+}
+.nav-wrapper{
+    padding : 0px 20px;
+    
+}
+nav .brand-logo {
+    position: relative;
+    font-size: 15px;
+}
+nav .material-icons{
+    vertical-align: middle;padding-bottom: 6px;
+}
+
+.icon {
+    width: 24px;
+    height: 27px;
+    display: inline-block;
+    content: '';
+    background: url('../images/facebook.png') no-repeat;
+}
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
+    margin-bottom: 8px;
+}
+.redborder input[type="text"],.redborder input[type="email"]{
+    border-bottom: 1px solid #ef9a9a;
+    box-shadow: 0 1px 0 0 #ef9a9a;
+}
+
+.redborder label, .error{
+    color : #ef9a9a;
+}
+
+@media(max-width:420px) {
+    .nav-wrapper{
+        padding : 0px 10px;
+    }
+    nav .brand-logo {
+        left : 0;
+        -webkit-transform: translateX(0%); 
+         transform: translateX(0%);
+         font-size : 1.1rem; 
+    }
+    nav ul a{
+        padding: 0px 10px;
+    }
+}
+#id_card_msg{
+    font-size: 19px;
+    line-height: 30px;
+    margin-bottom:10px;
+    display: block;
+}
+
 }

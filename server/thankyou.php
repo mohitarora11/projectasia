@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
     $user->updateAnswerStatus();
 
     if($_rtn) {
-        $_message = 'Thank You for your response. We will get back to you shortly';
+        $_message = 'Thank you for your response. We will get back to you shortly';
     } else {
         $_message = 'Oooops';
     }

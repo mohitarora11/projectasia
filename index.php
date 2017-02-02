@@ -1,23 +1,36 @@
 <?php
+include_once("server/global_var.php");
 $_videoid = 'ZbvDVuPr9yc';
 $_type = 'arshad';
+$_mobile = '00 47 934 41 371';
+$_instagram = 'https://www.instagram.com/arshad.amith/';
+$_facebook = 'https://www.facebook.com/arshad.amith';
 if($_SERVER["REQUEST_METHOD"] == "GET")
  { 
     if (!empty($_REQUEST["type"])){
         switch($_REQUEST["type"]){
             case 'arshad':
-                $_videoid = 'ZbvDVuPr9yc';
+                /*$_videoid = 'ZbvDVuPr9yc';
                 $_type = 'arshad';
+                $_mobile = '00 47 934 41 371';
+                $_instagram = 'https://www.instagram.com/arshad.amith/';
+                $_facebook = 'https://www.facebook.com/arshad.amith';*/
                 break;
             
             case 'torun':
                 $_videoid = 'OFe4HswpSJg';  
                 $_type = 'torun'; 
+                $_mobile = '00 47 916 81 338';
+                $_instagram = 'https://www.instagram.com/torun.nordskaug/';
+                $_facebook = 'https://www.facebook.com/torunnordskaug.no';
                 break;     
 
             case 'ob':
                 $_videoid = 'AuHqTSPmAb8';
                 $_type = 'ob';
+                $_mobile = '00 47 980 49 957';
+                $_instagram = 'https://www.instagram.com/oddgjedrem/';
+                $_facebook = 'https://www.facebook.com/oddbjorn.gjedrem';
                 break;    
         }
     }
@@ -32,77 +45,66 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" media="screen,projection" />
-    <!--<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />-->
-    <link type="text/css" rel="stylesheet" href="css/main.css?bpc=1" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <!--<link type="text/css" rel="stylesheet" href="css/css/material-design-iconic-font.css" media="screen,projection" />-->
+    <link type="text/css" rel="stylesheet" href="css/main.css?bpc=4<?php echo $GLOBALS['bpc'];?>" media="screen,projection" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#00897b" />
 
 </head>
 
-<body class="green lighten-4">
+<body class="teal darken-1">
 
+<div id="opaque"></div>
+<nav class="teal darken-4">
+    <div class="nav-wrapper">
+      <a class="waves-effect waves-light " href="#<?php echo $_type?>">
+      <span class="zmdi zmdi-account zmdi-hc-fw"></span> About Me
+      </a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="tel://<?php echo $_mobile;?>" ><span class=" zmdi zmdi-phone zmdi-hc-fw"></span><span class="hide-on-small-only"> Contact</span></a></li>
+        <li><a href="<?php echo $_instagram;?>" target="_blank"><span class="zmdi zmdi-instagram zmdi-hc-fw"></span><span class="hide-on-small-only">Instagram</span> </a></li>
+        <li><a href="<?php echo $_facebook;?>" target="_blank">
+        <span class="zmdi zmdi-facebook zmdi-hc-fw"></span><span class="hide-on-small-only">Facebook</span> </a></li>
+        
+      </ul>
+    </div>
+  </nav>
     <!--Import jQuery before materialize.js-->
     <div class="container">
         <div class="row" id="videowrapper">
             <div class="col s12">
                 <div class="card">
-                    <div  class="videowrapper">
-                        <div id="player"></div>
+                    <div class="videowrapper">
+                    <iframe class="youtube-player" type="text/html" width="100%" height="auto" src="http://www.youtube.com/embed/<?php echo $_videoid?>?autoplay=1&rel=0" frameborder="0">
+</iframe>
                     </div>
-                    <script src="http://www.youtube.com/player_api"></script>
-                    <script>
-                    // create youtube player
-                    var player;
-
-                    function onYouTubePlayerAPIReady() {
-                        player = new YT.Player('player', {
-                            height: 'auto',
-                            videoId: '<?php echo $_videoid?>',
-                            playerVars: {
-                                'autoplay': 1
-                            },    
-                            events: {
-                                'onReady': onPlayerReady,
-                                'onStateChange': onPlayerStateChange
-                            }
-                        });
-                    };
-                    // autoplay video
-                    function onPlayerReady(event) {
-                        event.target.playVideo();
-                    };
-                    // when video ends
-                    function onPlayerStateChange(event) {
-                        if (event.data === 0) {
-                            document.getElementById('id_row_form').style.opacity = '1';
-                            document.getElementById('videowrapper').style.display = 'none';
-                        }
-                    }
-                    </script>
+                   
                 </div>
             </div>
         </div>
         <div class="row" id="id_row_form">
-            <form class="col s12" id="id_form" method="post">
+            <form novalidate="" class="col s12" id="id_form" method="post">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title black-text">Sign In</span>
+                        <span class="card-title black-text">Get Started Here</span>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input pattern="[a-zA-Z][a-zA-Z ]{1,}" required name="fName" id="first_name" type="text" class="validate">
+                                <input maxlength="70" pattern="[a-zA-Z][a-zA-Z ]{1,}" required name="fName" id="id_first_name" type="text" class="validate">
                                 <label for="first_name">Name*</label>
                             </div>
                             
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input required id="email" type="email" name="email" class="validate">
+                                <input maxlength="70" required id="email" type="email" name="email" class="validate">
                                 <label for="email">Email*</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input pattern="^\d{10}$" id="mobile" name="mobile" type="text" class="validate">
+                                <input pattern="^\d{10,12}$" maxlength="12" id="mobile" name="mobile" type="text" class="validate">
                                 <label for="mobile">Mobile</label>
                             </div>
                         </div>
@@ -112,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
                                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                                     <i class="material-icons right">send</i>
                                 </button>
-                                <a style="margin-left: 10px" class="waves-effect waves-light" href="#<?php echo $_type?>">About Me</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -123,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title black-text">Thank you<span id="id_msg"></span></span><br/>
+                        <span id="id_card_msg" class="card-title black-text">Thank you<span id="id_msg"></span></span><br/>
                         <img id="id_aboutme_img" style="width:100%" src="" data-src="images/<?php echo $_type?>.jpg?bpc=1" />
                     </div>
                 </div>
@@ -252,34 +254,55 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <!--<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>-->
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
     <script type="text/javascript">
-        $('#id_form').submit(function(e) {
-            e.preventDefault();
-            $('#id_aboutme_img').attr('src',$('#id_aboutme_img').data('src'));
-            $.ajax({
-              url: "server/lead.php?id=save",
-              data: $('#id_form').serialize()
-            }).done(function(r) {
-                if(r.res) {
-
-                } else {
-                    if(typeof r["error"] != undefined) {
-                        r["error"]["errorInfo"].forEach(function(item,index){
-                            if(String(item).indexOf('Duplicate entry') > -1){
-                                $('#id_msg').html(", you have already registered with us.");    
-                            };
-                        })
-                    }
+        $('#id_form').validate({
+            rules : {
+                mobile : {
+                    minlength : 10
                 }
-                document.getElementById('id_row_thanks').style.opacity = '1';
-                document.getElementById('id_row_form').style.display = 'none';
-            });
+            },
+            highlight: function(el) {
+                $(el).parent().addClass('redborder');
+            },
+            unhighlight: function(el) {
+                $(el).parent().removeClass('redborder');
+            },
+            onfocusout: function(element) { $(element).valid(); },
+            /*errorPlacement: function(error, element) {},*/
+            errorElement : 'div',
+            submitHandler: function(form) {
+                $('#id_aboutme_img').attr('src',$('#id_aboutme_img').data('src'));
+                $('#opaque').show();
+                $.ajax({
+                  url: "server/lead.php?id=save",
+                  data: $('#id_form').serialize()
+                }).done(function(r) {
+                    if(r.res) {
+                        $('#id_msg').html(' '+$('#id_first_name').val()+' for taking the first step towards a life changing opportunity.');
+                    } else {
+                        if(typeof r["error"] != undefined) {
+                            r["error"]["errorInfo"].forEach(function(item,index){
+                                if(String(item).indexOf('Duplicate entry') > -1){
+                                    $('#id_msg').html(", you have already registered with us.");    
+                                };
+                            })
+                        }
+                    }
+                    document.getElementById('id_row_thanks').style.opacity = '1';
+                    document.getElementById('id_row_form').style.display = 'none';
+                    $('#opaque').hide();
+                });
+            }
         });
         $(document).ready(function(){
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal').modal();
+            $('.cls_contact').click(function(e){
+                //e.stopPropogation();
+                e.stopPropagation()
+                $(this).html($(this).data('no'));
+            })
         });
 
     </script>

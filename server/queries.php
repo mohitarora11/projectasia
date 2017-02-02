@@ -4,6 +4,7 @@ include_once("db_connection.php");
 include_once("global_var.php");
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
+date_default_timezone_set("Asia/Bangkok");
 class newuser{
 var $id,$email,$name,$lname,$mobile,$type,$rstring,$answerstatus;
 
@@ -113,6 +114,30 @@ var $id,$email,$name,$lname,$mobile,$type,$rstring,$answerstatus;
 					set answerstatus =1 where rstring='".$this->rstring."'";
 		$res = $conn->prepare($sql);
 		return $res->execute();
+	}
+
+	function getTableDump() {
+		global $conn;
+		$sql = "Select u.name,u.email,u.date_time,u.type as 'leadBy',q.question1,q.question2,q.question3,q.question4 from userinfo u , questionaire q where u.rstring=q.rstring";
+		$res = $conn->prepare($sql);
+		$res->execute();
+		header("Content-type: application/octet-stream");
+		header("Content-Disposition: attachment; filename=projectasia-".date('d-M-Y').".xls");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		$fp = fopen('php://output', 'w');
+		/*while ($row = $res->fetch(PDO::FETCH_ASSOC))
+		{   
+			fputcsv($fp,$row);
+		}*/
+		$row = $res->fetch(PDO::FETCH_ASSOC);
+		if ($row) {
+		    fputcsv($fp,array_keys($row));
+		    while ($row) {
+		        fputcsv($fp,array_values($row));
+		        $row = $res->fetch(PDO::FETCH_ASSOC);
+		    }
+		}
 	}
 }
 ?>
